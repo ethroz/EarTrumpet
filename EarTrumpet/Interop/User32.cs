@@ -209,8 +209,8 @@ namespace EarTrumpet.Interop
         public enum GWL : int
         {
             // ...
-            GWL_STYLE = (-16),
-            GWL_EXSTYLE = (-20),
+            STYLE = (-16),
+            EXSTYLE = (-20),
             // ...
         }
 

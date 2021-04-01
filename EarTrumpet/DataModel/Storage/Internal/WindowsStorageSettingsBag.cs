@@ -27,7 +27,7 @@ namespace EarTrumpet.DataModel.Storage.Internal
         {
             if (defaultValue is bool || defaultValue is string)
             {
-                return ReadSetting<T>(key, defaultValue);
+                return ReadSetting(key, defaultValue);
             }
 
             var data = ReadSetting<string>(key, null);

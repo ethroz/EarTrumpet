@@ -66,7 +66,15 @@ namespace EarTrumpet.Interop.Helpers
         {
             if (hotkey.IsEmpty) return;
 
-            var entry = _data[hotkey];
+            Entry entry;
+            try
+            {
+                entry = _data[hotkey];
+            }
+            catch
+            {
+                return;
+            }
             entry.RefCount--;
 
             Trace.WriteLine($"HotkeyManager: Unregister: {hotkey} {entry.RefCount}");

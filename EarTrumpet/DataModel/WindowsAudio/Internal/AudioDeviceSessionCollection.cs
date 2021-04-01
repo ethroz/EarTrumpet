@@ -9,7 +9,7 @@ using System.Windows.Threading;
 
 namespace EarTrumpet.DataModel.WindowsAudio.Internal
 {
-    class AudioDeviceSessionCollection : IAudioSessionNotification
+    public class AudioDeviceSessionCollection : IAudioSessionNotification
     {
         public ObservableCollection<IAudioDeviceSession> Sessions => _sessions;
 

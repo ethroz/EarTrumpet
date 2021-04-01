@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace EarTrumpet.DataModel.WindowsAudio.Internal
 {
-    class AudioDeviceSessionGroup : BindableBase, IAudioDeviceSession, IAudioDeviceSessionInternal
+    public class AudioDeviceSessionGroup : BindableBase, IAudioDeviceSession, IAudioDeviceSessionInternal
     {
         public IAudioDevice Parent => _sessions.Count > 0 ? _sessions[0].Parent : null;
 

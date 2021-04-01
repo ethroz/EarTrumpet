@@ -145,9 +145,11 @@ namespace EarTrumpet.UI.Controls
 
         private void OnMouseWheel(object sender, MouseWheelEventArgs e)
         {
+            e.Handled = true;
+            if (App.master && ((VolumeSlider)sender).DataContext.ToString() == "EarTrumpet.UI.Views.DeviceView")
+                return;
             var amount = Math.Sign(e.Delta) * 2.0;
             ChangePositionByAmount(amount);
-            e.Handled = true;
         }
 
         public void SetPositionByControlPoint(Point point)

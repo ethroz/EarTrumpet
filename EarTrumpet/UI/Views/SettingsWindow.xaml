@@ -107,6 +107,188 @@
                                     Content="{Binding OpenSettingsHotkey}"
                                     IsTabStop="False" />
                 </Grid>
+                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsVolumeShiftText}" ToolTip="{x:Static resx:Resources.SettingsVolumeShiftToolTip}" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock VerticalAlignment="Center"
+                               Style="{StaticResource BodySubText}"
+                               Text="{x:Static resx:Resources.DefaultHotkeyDescriptionText}" />
+                    <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodyText}"
+                               Text="{Binding DefaultVolumeShiftHotKey}" />
+                    <TextBlock Grid.Row="1"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodySubText}"
+                               Text="{x:Static resx:Resources.HotkeyDescriptionText}" />
+                    <ContentControl Grid.Row="1"
+                                    Grid.Column="1"
+                                    Content="{Binding VolumeShiftHotkey}"
+                                    IsTabStop="False" />
+                </Grid>
+                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsMuteVolumeText}" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock VerticalAlignment="Center"
+                               Style="{StaticResource BodySubText}"
+                               Text="{x:Static resx:Resources.DefaultHotkeyDescriptionText}" />
+                    <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodyText}"
+                               Text="{Binding DefaultMuteVolumeHotKey}" />
+                    <TextBlock Grid.Row="1"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodySubText}"
+                               Text="{x:Static resx:Resources.HotkeyDescriptionText}" />
+                    <ContentControl Grid.Row="1"
+                                    Grid.Column="1"
+                                    Content="{Binding MuteVolumeHotkey}"
+                                    IsTabStop="False" />
+                </Grid>
+                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsAppVolumeShiftText}" ToolTip="{x:Static resx:Resources.SettingsAppVolumeShiftToolTip}" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock VerticalAlignment="Center"
+                               Style="{StaticResource BodySubText}"
+                               Text="{x:Static resx:Resources.DefaultHotkeyDescriptionText}" />
+                    <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodyText}"
+                               Text="{Binding DefaultAppVolumeShiftHotKey}" />
+                    <TextBlock Grid.Row="1"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodySubText}"
+                               Text="{x:Static resx:Resources.HotkeyDescriptionText}" />
+                    <ContentControl Grid.Row="1"
+                                    Grid.Column="1"
+                                    Content="{Binding AppVolumeShiftHotkey}"
+                                    IsTabStop="False" />
+                </Grid>
+                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsMuteAppVolumeText}" ToolTip="{x:Static resx:Resources.SettingsMuteAppVolumeToolTip}" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock VerticalAlignment="Center"
+                               Style="{StaticResource BodySubText}"
+                               Text="{x:Static resx:Resources.DefaultHotkeyDescriptionText}" />
+                    <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodyText}"
+                               Text="{Binding DefaultMuteAppVolumeHotKey}" />
+                    <TextBlock Grid.Row="1"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodySubText}"
+                               Text="{x:Static resx:Resources.HotkeyDescriptionText}" />
+                    <ContentControl Grid.Row="1"
+                                    Grid.Column="1"
+                                    Content="{Binding MuteAppVolumeHotkey}"
+                                    IsTabStop="False" />
+                </Grid>
+                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsSaveVolumesText}" ToolTip="{x:Static resx:Resources.SettingsSaveVolumesToolTip}" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock VerticalAlignment="Center"
+                               Style="{StaticResource BodySubText}"
+                               Text="{x:Static resx:Resources.DefaultHotkeyDescriptionText}" />
+                    <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodyText}"
+                               Text="{Binding DefaultSaveVolumesHotKey}" />
+                    <TextBlock Grid.Row="1"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodySubText}"
+                               Text="{x:Static resx:Resources.HotkeyDescriptionText}" />
+                    <ContentControl Grid.Row="1"
+                                    Grid.Column="1"
+                                    Content="{Binding SaveVolumesHotkey}"
+                                    IsTabStop="False" />
+                </Grid>
+                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsOpenVolumesText}"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock VerticalAlignment="Center"
+                               Style="{StaticResource BodySubText}"
+                               Text="{x:Static resx:Resources.DefaultHotkeyDescriptionText}" />
+                    <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodyText}"
+                               Text="{Binding DefaultOpenVolumesHotKey}" />
+                    <TextBlock Grid.Row="1"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodySubText}"
+                               Text="{x:Static resx:Resources.HotkeyDescriptionText}" />
+                    <ContentControl Grid.Row="1"
+                                    Grid.Column="1"
+                                    Content="{Binding OpenVolumesHotkey}"
+                                    IsTabStop="False" />
+                </Grid>
+                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsEnableUnlimitedAppControlText}"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock VerticalAlignment="Center"
+                               Style="{StaticResource BodySubText}"
+                               Text="{x:Static resx:Resources.DefaultHotkeyDescriptionText}" />
+                    <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodyText}"
+                               Text="{Binding DefaultEnableUnlimitedAppControlHotKey}" />
+                    <TextBlock Grid.Row="1"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource BodySubText}"
+                               Text="{x:Static resx:Resources.HotkeyDescriptionText}" />
+                    <ContentControl Grid.Row="1"
+                                    Grid.Column="1"
+                                    Content="{Binding EnableUnlimitedAppControlHotKey}"
+                                    IsTabStop="False" />
+                </Grid>
             </StackPanel>
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:EarTrumpetLegacySettingsPageViewModel}">

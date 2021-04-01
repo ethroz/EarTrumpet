@@ -34,6 +34,11 @@ namespace EarTrumpet.UI.ViewModels
             get => _stream.IsMuted;
             set => _stream.IsMuted = value;
         }
+        public float fVolume
+        {
+            get => _stream.Volume;
+            set => _stream.Volume = value / 100f;
+        }
         public int Volume
         {
             get => _stream.Volume.ToVolumeInt();

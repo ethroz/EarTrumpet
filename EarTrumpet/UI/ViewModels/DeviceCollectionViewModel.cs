@@ -1,5 +1,6 @@
 ﻿using EarTrumpet.DataModel.Audio;
 using EarTrumpet.DataModel.WindowsAudio;
+using EarTrumpet.DataModel.WindowsAudio.Internal;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -263,6 +264,11 @@ namespace EarTrumpet.UI.ViewModels
             {
                 return Properties.Resources.NoDeviceTrayText;
             }
+        }
+
+        public AudioDeviceManager GetDeviceManager()
+        {
+            return (AudioDeviceManager)_deviceManager;
         }
     }
 }

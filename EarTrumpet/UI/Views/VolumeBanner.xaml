@@ -1,0 +1,31 @@
+﻿<Window x:Class="EarTrumpet.UI.Views.VolumeBanner"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:EarTrumpet.UI.Controls"
+        mc:Ignorable="d"
+        AllowsTransparency="True"
+        WindowStartupLocation="Manual"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        WindowStyle="None"
+        Width="66"
+        Height="179"
+        Left="50"
+        Top="22"
+        Topmost="true"
+        Focusable="False">
+
+    <Grid Background="#121212">
+        <Grid Height="24" VerticalAlignment="Top" Margin="0,20,0,0" HorizontalAlignment="Center" Width="24">
+            <Controls:ImageEx x:Name="AppIcon" SourceEx="{Binding}" Stretch="Fill" />
+        </Grid>
+        <Grid HorizontalAlignment="Center">
+            <Rectangle Fill="#6A6A6A" Height="80" Margin="0,0,0,42" VerticalAlignment="Bottom" Width="12"/>
+            <Rectangle x:Name="AccentRect" Height="0" Margin="0,0,0,42" VerticalAlignment="Bottom" Width="12"/>
+            <Rectangle Fill="#FFFFFF" Height="12" Margin="{Binding BoxMargin}" VerticalAlignment="Bottom" Width="12"/>
+            <TextBlock Foreground="White" Margin="0,0,0,16" TextWrapping="NoWrap" Text="{Binding VolumeText}" VerticalAlignment="Bottom" Height="16" Width="24" TextAlignment="Center" FontFamily="Segoe UI"/>
+        </Grid>
+    </Grid>
+</Window>

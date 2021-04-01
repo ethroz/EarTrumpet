@@ -296,4 +296,37 @@ Open [https://eartrumpet.app/jmp/fixfonts] now?</value>
   <data name="PrivacyCheckboxText" xml:space="preserve">
     <value>Send crash data to the EarTrumpet team</value>
   </data>
+  <data name="SettingsAppVolumeShiftText" xml:space="preserve">
+    <value>App volume modifier</value>
+  </data>
+  <data name="SettingsAppVolumeShiftToolTip" xml:space="preserve">
+    <value>Hover mouse over a window and scroll up or down while holding shortcut</value>
+  </data>
+  <data name="SettingsEnableUnlimitedAppControlText" xml:space="preserve">
+    <value>Unbound the application maximum volume</value>
+  </data>
+  <data name="SettingsMuteAppVolumeText" xml:space="preserve">
+    <value>Mute app volume</value>
+  </data>
+  <data name="SettingsMuteAppVolumeToolTip" xml:space="preserve">
+    <value>The app that the mouse is above</value>
+  </data>
+  <data name="SettingsMuteVolumeText" xml:space="preserve">
+    <value>Mute volume</value>
+  </data>
+  <data name="SettingsOpenVolumesText" xml:space="preserve">
+    <value>Apply the saved volume preferences</value>
+  </data>
+  <data name="SettingsSaveVolumesText" xml:space="preserve">
+    <value>Save the volume preferences</value>
+  </data>
+  <data name="SettingsSaveVolumesToolTip" xml:space="preserve">
+    <value>For all the current applications (appends/overwrites)</value>
+  </data>
+  <data name="SettingsVolumeShiftText" xml:space="preserve">
+    <value>Volume modifier</value>
+  </data>
+  <data name="SettingsVolumeShiftToolTip" xml:space="preserve">
+    <value>Scroll up or down while holding shortcut</value>
+  </data>
 </root>

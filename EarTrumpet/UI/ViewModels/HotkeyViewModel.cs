@@ -65,28 +65,28 @@ namespace EarTrumpet.UI.ViewModels
                 _hotkey.Modifiers = System.Windows.Forms.Keys.None;
                 _hotkey.Key = System.Windows.Forms.Keys.None;
 
-                if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+                if ((Keyboard.IsKeyDown(Key.LeftCtrl) && key != Key.LeftCtrl) || (Keyboard.IsKeyDown(Key.RightCtrl) && key != Key.RightCtrl))
                 {
                     _hotkey.Modifiers = System.Windows.Forms.Keys.Control;
                 }
 
-                if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
+                if ((Keyboard.IsKeyDown(Key.LeftShift) && key != Key.LeftShift) || (Keyboard.IsKeyDown(Key.RightShift) && key != Key.RightShift))
                 {
                     _hotkey.Modifiers |= System.Windows.Forms.Keys.Shift;
                 }
 
-                if (Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt))
+                if ((Keyboard.IsKeyDown(Key.LeftAlt) && key != Key.LeftAlt) || (Keyboard.IsKeyDown(Key.RightAlt) && key != Key.RightAlt))
                 {
                     _hotkey.Modifiers |= System.Windows.Forms.Keys.Alt;
                 }
 
-                if (key == Key.LeftShift || key == Key.RightShift ||
-                    key == Key.LeftAlt || key == Key.RightAlt ||
-                    key == Key.LeftCtrl || key == Key.RightCtrl ||
-                    key == Key.CapsLock || key == Key.LWin || key == Key.RWin)
-                {
-                    // Ignore all types of modifiers
-                }
+                //if (key == Key.LeftShift || key == Key.RightShift ||
+                //    key == Key.LeftAlt || key == Key.RightAlt ||
+                //    key == Key.LeftCtrl || key == Key.RightCtrl ||
+                //    key == Key.CapsLock || key == Key.LWin || key == Key.RWin)
+                //{
+                //    // Ignore all types of modifiers
+                //}
                 else
                 {
                     _hotkey.Key = (System.Windows.Forms.Keys)KeyInterop.VirtualKeyFromKey(key);

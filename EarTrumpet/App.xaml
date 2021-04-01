@@ -603,7 +603,7 @@
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="1">
                                     <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
-                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                                        <StackPanel IsItemsHost="True" />
                                     </ScrollViewer>
                                 </Border>
                             </Border>
@@ -705,7 +705,7 @@
                                                     BorderBrush="{TemplateBinding BorderBrush}"
                                                     BorderThickness="1">
                                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                                                    <StackPanel IsItemsHost="True" />
                                                 </ScrollViewer>
                                             </Border>
                                         </Border>
@@ -1056,7 +1056,6 @@
                 <Setter Property="MinWidth" Value="140" />
                 <Setter Property="MinHeight" Value="32" />
                 <Setter Property="Margin" Value="12" />
-                <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
                 <Setter Property="HorizontalContentAlignment" Value="Left" />
                 <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                 <Setter Property="AllowDrop" Value="True" />
@@ -1276,7 +1275,7 @@
                                             SnapsToDevicePixels="True">
                                         <Grid>
                                             <ItemsPresenter x:Name="ItemsPresenter"
-                                                            KeyboardNavigation.DirectionalNavigation="Contained"
+                                                            KeyboardNavigation.DirectionalNavigation="None"
                                                             SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                         </Grid>
                                     </Border>

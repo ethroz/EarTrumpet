@@ -2,7 +2,6 @@
 using EarTrumpet.Interop.Helpers;
 using System;
 using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 
 namespace EarTrumpet
@@ -13,7 +12,11 @@ namespace EarTrumpet
         public event Action FlyoutHotkeyTyped;
         public event Action MixerHotkeyTyped;
         public event Action SettingsHotkeyTyped;
-        public event Action FocusedVolumeShifterHotkeyTyped;
+        public event Action MuteVolumeHotkeyTyped;
+        public event Action MuteAppVolumeHotkeyTyped;
+        public event Action SaveVolumesHotkeyTyped;
+        public event Action OpenVolumesHotkeyTyped;
+        public event Action EnableUnlimitedAppControlHotKeyTyped;
 
         private ISettingsBag _settings = StorageFactory.GetSettings();
 
@@ -22,16 +25,14 @@ namespace EarTrumpet
             HotkeyManager.Current.Register(FlyoutHotkey);
             HotkeyManager.Current.Register(MixerHotkey);
             HotkeyManager.Current.Register(SettingsHotkey);
-            HotkeyManager.Current.Register(FocusedVolumeShifterHotkey);
+            HotkeyManager.Current.Register(MuteVolumeHotkey);
+            HotkeyManager.Current.Register(MuteAppVolumeHotkey);
+            HotkeyManager.Current.Register(SaveVolumesHotkey);
+            HotkeyManager.Current.Register(OpenVolumesHotkey);
 
             HotkeyManager.Current.KeyPressed += (hotkey) =>
             {
-                if (hotkey.Equals(FocusedVolumeShifterHotkey))
-                {
-                    Trace.WriteLine("AppSettings FocusedVolumeShifterHotkeyTyped");
-                    FocusedVolumeShifterHotkeyTyped?.Invoke();
-                }
-                else if (hotkey.Equals(FlyoutHotkey))
+                if (hotkey.Equals(FlyoutHotkey))
                 {
                     Trace.WriteLine("AppSettings FlyoutHotkeyTyped");
                     FlyoutHotkeyTyped?.Invoke();
@@ -45,6 +46,31 @@ namespace EarTrumpet
                 {
                     Trace.WriteLine("AppSettings MixerHotkeyTyped");
                     MixerHotkeyTyped?.Invoke();
+                }
+                else if (hotkey.Equals(MuteVolumeHotkey))
+                {
+                    Trace.WriteLine("AppSettings MuteVolumeHotkeyTyped");
+                    MuteVolumeHotkeyTyped?.Invoke();
+                }
+                else if (hotkey.Equals(MuteAppVolumeHotkey))
+                {
+                    Trace.WriteLine("AppSettings MuteAppVolumeHotkeyTyped");
+                    MuteAppVolumeHotkeyTyped?.Invoke();
+                }
+                else if (hotkey.Equals(SaveVolumesHotkey))
+                {
+                    Trace.WriteLine("AppSettings SaveVolumesHotkeyTyped");
+                    SaveVolumesHotkeyTyped?.Invoke();
+                }
+                else if (hotkey.Equals(OpenVolumesHotkey))
+                {
+                    Trace.WriteLine("AppSettings OpenVolumesHotkeyTyped");
+                    OpenVolumesHotkeyTyped?.Invoke();
+                }
+                else if (hotkey.Equals(EnableUnlimitedAppControlHotKey))
+                {
+                    Trace.WriteLine("AppSettings EnableUnlimitedAppControlHotKeyTyped");
+                    EnableUnlimitedAppControlHotKeyTyped?.Invoke();
                 }
             };
         }
@@ -82,15 +108,105 @@ namespace EarTrumpet
             }
         }
 
-        public HotkeyData FocusedVolumeShifterHotkey
+        public HotkeyData VolumeShiftHotkey
         {
-            get => _settings.Get("FocusedVolumeShifterHotkey", new HotkeyData { });
+            get => _settings.Get("VolumeShiftHotkey", new HotkeyData { });
             set
             {
-                HotkeyManager.Current.Unregister(FocusedVolumeShifterHotkey);
-                _settings.Set("FocusedVolumeShifterHotkey", value);
-                HotkeyManager.Current.Register(FocusedVolumeShifterHotkey);
+                HotkeyManager.Current.Unregister(VolumeShiftHotkey);
+                _settings.Set("VolumeShiftHotkey", value);
+                HotkeyManager.Current.Register(VolumeShiftHotkey);
             }
+        }
+
+        public HotkeyData MuteVolumeHotkey
+        {
+            get => _settings.Get("MuteVolumeHotkey", new HotkeyData { });
+            set
+            {
+                HotkeyManager.Current.Unregister(MuteVolumeHotkey);
+                _settings.Set("MuteVolumeHotkey", value);
+                HotkeyManager.Current.Register(MuteVolumeHotkey);
+            }
+        }
+
+        public HotkeyData AppVolumeShiftHotkey
+        {
+            get => _settings.Get("AppVolumeShiftHotkey", new HotkeyData { });
+            set
+            {
+                HotkeyManager.Current.Unregister(AppVolumeShiftHotkey);
+                _settings.Set("AppVolumeShiftHotkey", value);
+                HotkeyManager.Current.Register(AppVolumeShiftHotkey);
+            }
+        }
+
+        public HotkeyData MuteAppVolumeHotkey
+        {
+            get => _settings.Get("MuteAppVolumeHotkey", new HotkeyData { });
+            set
+            {
+                HotkeyManager.Current.Unregister(MuteAppVolumeHotkey);
+                _settings.Set("MuteAppVolumeHotkey", value);
+                HotkeyManager.Current.Register(MuteAppVolumeHotkey);
+            }
+        }
+
+        public HotkeyData SaveVolumesHotkey
+        {
+            get => _settings.Get("SaveVolumesHotkey", new HotkeyData { });
+            set
+            {
+                HotkeyManager.Current.Unregister(SaveVolumesHotkey);
+                _settings.Set("SaveVolumesHotkey", value);
+                HotkeyManager.Current.Register(SaveVolumesHotkey);
+            }
+        }
+
+        public HotkeyData OpenVolumesHotkey
+        {
+            get => _settings.Get("OpenVolumesHotkey", new HotkeyData { });
+            set
+            {
+                HotkeyManager.Current.Unregister(OpenVolumesHotkey);
+                _settings.Set("OpenVolumesHotkey", value);
+                HotkeyManager.Current.Register(OpenVolumesHotkey);
+            }
+        }
+
+        public HotkeyData EnableUnlimitedAppControlHotKey
+        {
+            get => _settings.Get("EnableUnlimitedAppControlHotKey", new HotkeyData { });
+            set
+            {
+                HotkeyManager.Current.Unregister(EnableUnlimitedAppControlHotKey);
+                _settings.Set("EnableUnlimitedAppControlHotKey", value);
+                HotkeyManager.Current.Register(EnableUnlimitedAppControlHotKey);
+            }
+        }
+
+        public void SaveVolumes(string[][][] volumes)
+        {
+            _settings.Set("SavedVolumes", volumes);
+        }
+
+        public string[][][] OpenVolumes()
+        {
+            string[][][] defaut = new string[0][][];
+            string[][][] output = _settings.Get("SavedVolumes", defaut);
+            if (output.Length == 0)
+                return null;
+            return output;
+        }
+
+        public void SaveBool(string name, bool value)
+        {
+            _settings.Set(name, value);
+        }
+
+        public bool OpenBool(string name, bool defaut)
+        {
+            return _settings.Get(name, defaut);
         }
 
         public bool UseLegacyIcon

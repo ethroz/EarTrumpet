@@ -1,6 +1,7 @@
 ﻿using EarTrumpet.DataModel;
 using EarTrumpet.Extensions;
 using EarTrumpet.Interop.Helpers;
+using EarTrumpet.UI.Views;
 using System;
 using System.Windows;
 using System.Windows.Media.Animation;
@@ -10,6 +11,45 @@ namespace EarTrumpet.UI.Helpers
     public class WindowAnimationLibrary
     {
         const int _animationOffset = 25;
+        private static Storyboard bannerStoryBoard;
+
+        public static void StopAnimation(Window window)
+        {
+            if (bannerStoryBoard != null)
+            {
+                bannerStoryBoard.Stop(window);
+            }
+        }
+
+        public static void BeginBannerExitAnimation(Window window)
+        {
+            if (SystemSettings.IsTransparencyEnabled)
+            {
+                var fadeAnimation = new DoubleAnimation
+                {
+                    Duration = new Duration(TimeSpan.FromMilliseconds(VolumeBanner.FadeTime)),
+                    FillBehavior = FillBehavior.Stop,
+                    EasingFunction = new ExponentialEase { EasingMode = EasingMode.EaseOut },
+                    From = 1.0,
+                    To = 0.0,
+                };
+                fadeAnimation.Completed += (s, e) => { window.Opacity = 0.0; };
+
+                Storyboard.SetTarget(fadeAnimation, window);
+                Storyboard.SetTargetProperty(fadeAnimation, new PropertyPath(UIElement.OpacityProperty));
+
+                bannerStoryBoard = new Storyboard();
+                bannerStoryBoard.FillBehavior = FillBehavior.Stop;
+
+                bannerStoryBoard.Children.Add(fadeAnimation);
+                bannerStoryBoard.Completed += new EventHandler((s, e) => { window.Hide(); });
+                bannerStoryBoard.Begin(window, true);
+            }
+            else
+            {
+                window.Hide();
+            }
+        }
 
         public static void BeginFlyoutEntranceAnimation(Window window, WindowsTaskbar.State taskbar, Action completed)
         {
@@ -137,7 +177,7 @@ namespace EarTrumpet.UI.Helpers
             fadeAnimation.Completed += (s, e) => { window.Opacity = 0; };
 
             Storyboard.SetTarget(fadeAnimation, window);
-            Storyboard.SetTargetProperty(fadeAnimation, new PropertyPath(Window.OpacityProperty));
+            Storyboard.SetTargetProperty(fadeAnimation, new PropertyPath(UIElement.OpacityProperty));
 
             var taskbarPosition = WindowsTaskbar.Current.Location;
 

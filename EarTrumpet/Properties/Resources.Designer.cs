@@ -432,6 +432,24 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to App volume modifier.
+        /// </summary>
+        public static string SettingsAppVolumeShiftText {
+            get {
+                return ResourceManager.GetString("SettingsAppVolumeShiftText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hover mouse over a window and scroll up or down while holding shortcut.
+        /// </summary>
+        public static string SettingsAppVolumeShiftToolTip {
+            get {
+                return ResourceManager.GetString("SettingsAppVolumeShiftToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to General.
         /// </summary>
         public static string SettingsCategoryTitle {
@@ -446,6 +464,42 @@ namespace EarTrumpet.Properties {
         public static string SettingsDescriptionText {
             get {
                 return ResourceManager.GetString("SettingsDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unbound the application maximum volume.
+        /// </summary>
+        public static string SettingsEnableUnlimitedAppControlText {
+            get {
+                return ResourceManager.GetString("SettingsEnableUnlimitedAppControlText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mute app volume.
+        /// </summary>
+        public static string SettingsMuteAppVolumeText {
+            get {
+                return ResourceManager.GetString("SettingsMuteAppVolumeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The app that the mouse is above.
+        /// </summary>
+        public static string SettingsMuteAppVolumeToolTip {
+            get {
+                return ResourceManager.GetString("SettingsMuteAppVolumeToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mute volume.
+        /// </summary>
+        public static string SettingsMuteVolumeText {
+            get {
+                return ResourceManager.GetString("SettingsMuteVolumeText", resourceCulture);
             }
         }
         
@@ -477,6 +531,33 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply the saved volume preferences.
+        /// </summary>
+        public static string SettingsOpenVolumesText {
+            get {
+                return ResourceManager.GetString("SettingsOpenVolumesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save the volume preferences.
+        /// </summary>
+        public static string SettingsSaveVolumesText {
+            get {
+                return ResourceManager.GetString("SettingsSaveVolumesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For all the current applications (appends/overwrites).
+        /// </summary>
+        public static string SettingsSaveVolumesToolTip {
+            get {
+                return ResourceManager.GetString("SettingsSaveVolumesToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EarTrumpet Settings.
         /// </summary>
         public static string SettingsTitle {
@@ -491,6 +572,24 @@ namespace EarTrumpet.Properties {
         public static string SettingsUseLegacyEarTrumpetIcon {
             get {
                 return ResourceManager.GetString("SettingsUseLegacyEarTrumpetIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volume modifier.
+        /// </summary>
+        public static string SettingsVolumeShiftText {
+            get {
+                return ResourceManager.GetString("SettingsVolumeShiftText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll up or down while holding shortcut.
+        /// </summary>
+        public static string SettingsVolumeShiftToolTip {
+            get {
+                return ResourceManager.GetString("SettingsVolumeShiftToolTip", resourceCulture);
             }
         }
         

@@ -14,7 +14,7 @@ using System.Windows.Threading;
 
 namespace EarTrumpet.DataModel.WindowsAudio.Internal
 {
-    class AudioDeviceSession : BindableBase, IAudioSessionEvents, IAudioDeviceSession, IAudioDeviceSessionInternal
+    public class AudioDeviceSession : BindableBase, IAudioSessionEvents, IAudioDeviceSession, IAudioDeviceSessionInternal
     {
         public IAudioDevice Parent
         {

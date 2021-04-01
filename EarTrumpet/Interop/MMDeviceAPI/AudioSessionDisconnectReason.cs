@@ -1,6 +1,6 @@
 ﻿namespace EarTrumpet.Interop.MMDeviceAPI
 {
-    enum AudioSessionDisconnectReason
+    public enum AudioSessionDisconnectReason
     {
         DeviceRemoval = 0,
         ServerShutdown = 1,

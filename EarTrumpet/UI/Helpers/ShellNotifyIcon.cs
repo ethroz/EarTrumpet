@@ -137,15 +137,15 @@ namespace EarTrumpet.UI.Helpers
             if (msg.Msg == WM_CALLBACKMOUSEMSG)
             {
                 CallbackMsgWndProc(msg);
+                return;
             }
             else if (msg.Msg == Shell32.WM_TASKBARCREATED ||
                     (msg.Msg == User32.WM_SETTINGCHANGE && (int)msg.WParam == User32.SPI_SETWORKAREA))
             {
                 ScheduleDelayedIconInvalidation();
+                return;
             }
-            else if (msg.Msg == User32.WM_INPUT &&
-                    InputHelper.ProcessMouseInputMessage(msg.LParam, ref _cursorPosition, out int wheelDelta) &&
-                    IsCursorWithinNotifyIconBounds() && wheelDelta != 0)
+            else if (msg.Msg == User32.WM_INPUT && InputHelper.ProcessMouseInputMessage(msg.LParam, ref _cursorPosition, out int wheelDelta) && IsCursorWithinNotifyIconBounds() && wheelDelta != 0)
             {
                 Scrolled?.Invoke(this, wheelDelta);
             }
@@ -196,6 +196,11 @@ namespace EarTrumpet.UI.Helpers
             {
                 _iconLocation = default(RECT);
             }
+        }
+
+        public bool IsCursorOnIcon(int x, int y)
+        {
+            return _iconLocation.Contains(new System.Drawing.Point(x, y));
         }
 
         private bool IsCursorWithinNotifyIconBounds()

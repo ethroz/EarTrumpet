@@ -1,6 +1,6 @@
 ﻿namespace EarTrumpet.Interop.MMDeviceAPI
 {
-    enum AudioSessionState
+    public enum AudioSessionState
     {
         Inactive = 0,
         Active = 1,
