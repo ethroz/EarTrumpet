@@ -6,6 +6,7 @@ using EarTrumpet.UI.Controls;
 using EarTrumpet.UI.Helpers;
 using EarTrumpet.UI.ViewModels;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
@@ -79,11 +80,19 @@ namespace EarTrumpet.UI.Views
                 session = sess;
                 AppIcon.Source = ImageEx.LoadShellIcon(session.IconPath, session.IsDesktopApp, 24, 24);
             }
-            Model.IsMuted = sess.IsMuted;
             AppIcon.Opacity = 1.0;
             Height = appHeight;
             Top = 22;
-            Model.VolumeText = ((int)Math.Round(session.Volume * 100.0f)).ToString();
+            if (sess.IsMuted)
+            {
+                Model.MutedText = "+";
+                Model.VolumeText = "";
+            }
+            else
+            {
+                Model.MutedText = "";
+                Model.VolumeText = ((int)Math.Round(session.Volume * 100.0f)).ToString();
+            }
             AccentRect.Height = (int)(session.Volume * (80 - 12));
             Model.BoxMargin = new Thickness(0, 0, 0, session.Volume * (80 - 12) + 42);
             PopUp();
@@ -92,11 +101,19 @@ namespace EarTrumpet.UI.Views
         public void ChangeMasterVolume(float vol, bool muted)
         {
             volume = vol;
-            Model.IsMuted = muted;
             AppIcon.Opacity = 0.0;
             Height = masterHeight;
             Top = 60;
-            Model.VolumeText = ((int)Math.Round(volume * 100.0f)).ToString();
+            if (muted)
+            {
+                Model.MutedText = "+";
+                Model.VolumeText = "";
+            }
+            else
+            {
+                Model.MutedText = "";
+                Model.VolumeText = ((int)Math.Round(volume * 100.0f)).ToString();
+            }
             AccentRect.Height = (int)(volume * (80 - 12));
             Model.BoxMargin = new Thickness(0, 0, 0, volume * (80 - 12) + 42);
             PopUp();

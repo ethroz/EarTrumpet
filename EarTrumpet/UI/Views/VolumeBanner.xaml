@@ -22,10 +22,15 @@
             <Controls:ImageEx x:Name="AppIcon" SourceEx="{Binding}" Stretch="Fill" />
         </Grid>
         <Grid HorizontalAlignment="Center">
-            <Rectangle Fill="#6A6A6A" Height="80" Margin="0,0,0,42" VerticalAlignment="Bottom" Width="12"/>
-            <Rectangle x:Name="AccentRect" Height="0" Margin="0,0,0,42" VerticalAlignment="Bottom" Width="12"/>
-            <Rectangle Fill="#FFFFFF" Height="12" Margin="{Binding BoxMargin}" VerticalAlignment="Bottom" Width="12"/>
-            <TextBlock Foreground="White" Margin="0,0,0,16" TextWrapping="NoWrap" Text="{Binding VolumeText}" VerticalAlignment="Bottom" Height="16" Width="24" TextAlignment="Center" FontFamily="Segoe UI"/>
+            <Rectangle Fill="#6A6A6A" Height="80" Margin="0,0,0,42" VerticalAlignment="Bottom" Width="12" />
+            <Rectangle x:Name="AccentRect" Height="0" Margin="0,0,0,42" VerticalAlignment="Bottom" Width="12" />
+            <Rectangle Fill="#FFFFFF" Height="12" Margin="{Binding BoxMargin}" VerticalAlignment="Bottom" Width="12" />
+            <TextBlock Foreground="White" Margin="0,0,0,16" TextWrapping="NoWrap" Text="{Binding VolumeText}" VerticalAlignment="Bottom" Height="16" Width="24" TextAlignment="Center" FontFamily="Segoe UI" />
+            <TextBlock Foreground="White" Height="50" VerticalAlignment="Bottom" Margin="0,0,0,0" Width="22" Text="{Binding MutedText}" TextAlignment="Center" FontFamily="Segoe UI" FontSize="32" FontWeight="Normal" RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
+                    <RotateTransform Angle="45"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
         </Grid>
     </Grid>
 </Window>

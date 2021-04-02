@@ -41,16 +41,16 @@ namespace EarTrumpet.UI.ViewModels
             Title = Properties.Resources.ShortcutsPageText;
             Glyph = "\xE765";
 
-            OpenFlyoutHotkey = new HotkeyViewModel(settings.FlyoutHotkey, (newHotkey) => settings.FlyoutHotkey = newHotkey);
-            OpenMixerHotkey = new HotkeyViewModel(settings.MixerHotkey, (newHotkey) => settings.MixerHotkey = newHotkey);
-            OpenSettingsHotkey = new HotkeyViewModel(settings.SettingsHotkey, (newHotkey) => settings.SettingsHotkey = newHotkey);
-            VolumeShiftHotkey = new HotkeyViewModel(settings.VolumeShiftHotkey, (newHotkey) => settings.VolumeShiftHotkey = newHotkey);
-            MuteVolumeHotkey = new HotkeyViewModel(settings.MuteVolumeHotkey, (newHotkey) => settings.MuteVolumeHotkey = newHotkey);
-            AppVolumeShiftHotkey = new HotkeyViewModel(settings.AppVolumeShiftHotkey, (newHotkey) => settings.AppVolumeShiftHotkey = newHotkey);
-            MuteAppVolumeHotkey = new HotkeyViewModel(settings.MuteAppVolumeHotkey, (newHotkey) => settings.MuteAppVolumeHotkey = newHotkey);
-            SaveVolumesHotkey = new HotkeyViewModel(settings.SaveVolumesHotkey, (newHotkey) => settings.SaveVolumesHotkey = newHotkey);
-            OpenVolumesHotkey = new HotkeyViewModel(settings.OpenVolumesHotkey, (newHotkey) => settings.OpenVolumesHotkey = newHotkey);
-            EnableUnlimitedAppControlHotKey = new HotkeyViewModel(settings.EnableUnlimitedAppControlHotKey, (newHotkey) => settings.EnableUnlimitedAppControlHotKey = newHotkey);
+            OpenFlyoutHotkey = new HotkeyViewModel(settings.FlyoutHotkey, (newHotkey) => settings.FlyoutHotkey = newHotkey, true);
+            OpenMixerHotkey = new HotkeyViewModel(settings.MixerHotkey, (newHotkey) => settings.MixerHotkey = newHotkey, true);
+            OpenSettingsHotkey = new HotkeyViewModel(settings.SettingsHotkey, (newHotkey) => settings.SettingsHotkey = newHotkey, true);
+            VolumeShiftHotkey = new HotkeyViewModel(settings.VolumeShiftHotkey, (newHotkey) => settings.VolumeShiftHotkey = newHotkey, false);
+            MuteVolumeHotkey = new HotkeyViewModel(settings.MuteVolumeHotkey, (newHotkey) => settings.MuteVolumeHotkey = newHotkey, true);
+            AppVolumeShiftHotkey = new HotkeyViewModel(settings.AppVolumeShiftHotkey, (newHotkey) => settings.AppVolumeShiftHotkey = newHotkey, false);
+            MuteAppVolumeHotkey = new HotkeyViewModel(settings.MuteAppVolumeHotkey, (newHotkey) => settings.MuteAppVolumeHotkey = newHotkey, true);
+            SaveVolumesHotkey = new HotkeyViewModel(settings.SaveVolumesHotkey, (newHotkey) => settings.SaveVolumesHotkey = newHotkey, true);
+            OpenVolumesHotkey = new HotkeyViewModel(settings.OpenVolumesHotkey, (newHotkey) => settings.OpenVolumesHotkey = newHotkey, true);
+            EnableUnlimitedAppControlHotKey = new HotkeyViewModel(settings.EnableUnlimitedAppControlHotKey, (newHotkey) => settings.EnableUnlimitedAppControlHotKey = newHotkey, true);
         }
     }
 }

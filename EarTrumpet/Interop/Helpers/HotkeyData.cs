@@ -18,6 +18,7 @@ namespace EarTrumpet.Interop.Helpers
 
         public Keys Modifiers { get; set; }
         public Keys Key { get; set; }
+        public bool[] indices = new bool[8];
 
         public HotkeyData(Message msg)
         {

@@ -17,16 +17,16 @@ namespace EarTrumpet.UI.ViewModels
                 }
             }
         }
-        private bool _isMuted;
-        public bool IsMuted
+        private string _mutedText;
+        public string MutedText
         {
-            get => _isMuted;
+            get => _mutedText;
             set
             {
-                if (_isMuted != value)
+                if (_mutedText != value)
                 {
-                    _isMuted = value;
-                    RaisePropertyChanged(nameof(IsMuted));
+                    _mutedText = value;
+                    RaisePropertyChanged(nameof(MutedText));
                 }
             }
         }

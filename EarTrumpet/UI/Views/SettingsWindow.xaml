@@ -29,7 +29,7 @@
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:EarTrumpetShortcutsPageViewModel}">
             <StackPanel Orientation="Vertical">
-                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsOpenEarTrumpetText}" />
+                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsOpenEarTrumpetText}" ToolTip="{x:Static resx:Resources.SettingsOpenEarTrumpetToolTip}" />
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -37,7 +37,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
                     <TextBlock VerticalAlignment="Center"
                                Style="{StaticResource BodySubText}"
@@ -53,9 +53,10 @@
                     <ContentControl Grid.Row="1"
                                     Grid.Column="1"
                                     Content="{Binding OpenFlyoutHotkey}"
-                                    IsTabStop="False" />
+                                    IsTabStop="False"
+                                    ToolTip="{x:Static resx:Resources.SettingsOpenEarTrumpetToolTip}" />
                 </Grid>
-                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsOpenMixerText}" />
+                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsOpenMixerText}" ToolTip="{x:Static resx:Resources.SettingsOpenMixerToolTip}" />
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -63,7 +64,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
                     <TextBlock VerticalAlignment="Center"
                                Style="{StaticResource BodySubText}"
@@ -79,9 +80,10 @@
                     <ContentControl Grid.Row="1"
                                     Grid.Column="1"
                                     Content="{Binding OpenMixerHotkey}"
-                                    IsTabStop="False" />
+                                    IsTabStop="False"
+                                    ToolTip="{x:Static resx:Resources.SettingsOpenMixerToolTip}" />
                 </Grid>
-                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsOpenSettingsText}" />
+                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsOpenSettingsText}" ToolTip="{x:Static resx:Resources.SettingsOpenSettingsToolTip}" />
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -89,7 +91,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
                     <TextBlock VerticalAlignment="Center"
                                Style="{StaticResource BodySubText}"
@@ -105,7 +107,8 @@
                     <ContentControl Grid.Row="1"
                                     Grid.Column="1"
                                     Content="{Binding OpenSettingsHotkey}"
-                                    IsTabStop="False" />
+                                    IsTabStop="False"
+                                    ToolTip="{x:Static resx:Resources.SettingsOpenSettingsToolTip}" />
                 </Grid>
                 <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsVolumeShiftText}" ToolTip="{x:Static resx:Resources.SettingsVolumeShiftToolTip}" />
                 <Grid>
@@ -115,7 +118,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
                     <TextBlock VerticalAlignment="Center"
                                Style="{StaticResource BodySubText}"
@@ -131,9 +134,10 @@
                     <ContentControl Grid.Row="1"
                                     Grid.Column="1"
                                     Content="{Binding VolumeShiftHotkey}"
-                                    IsTabStop="False" />
+                                    IsTabStop="False" 
+                                    ToolTip="{x:Static resx:Resources.SettingsVolumeShiftToolTip}" />
                 </Grid>
-                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsMuteVolumeText}" />
+                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsMuteVolumeText}" ToolTip="{x:Static resx:Resources.SettingsMuteVolumeToolTip}" />
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -141,7 +145,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
                     <TextBlock VerticalAlignment="Center"
                                Style="{StaticResource BodySubText}"
@@ -157,7 +161,8 @@
                     <ContentControl Grid.Row="1"
                                     Grid.Column="1"
                                     Content="{Binding MuteVolumeHotkey}"
-                                    IsTabStop="False" />
+                                    IsTabStop="False"
+                                    ToolTip="{x:Static resx:Resources.SettingsMuteVolumeToolTip}" />
                 </Grid>
                 <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsAppVolumeShiftText}" ToolTip="{x:Static resx:Resources.SettingsAppVolumeShiftToolTip}" />
                 <Grid>
@@ -167,7 +172,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
                     <TextBlock VerticalAlignment="Center"
                                Style="{StaticResource BodySubText}"
@@ -183,7 +188,8 @@
                     <ContentControl Grid.Row="1"
                                     Grid.Column="1"
                                     Content="{Binding AppVolumeShiftHotkey}"
-                                    IsTabStop="False" />
+                                    IsTabStop="False"
+                                    ToolTip="{x:Static resx:Resources.SettingsAppVolumeShiftToolTip}" />
                 </Grid>
                 <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsMuteAppVolumeText}" ToolTip="{x:Static resx:Resources.SettingsMuteAppVolumeToolTip}" />
                 <Grid>
@@ -193,7 +199,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
                     <TextBlock VerticalAlignment="Center"
                                Style="{StaticResource BodySubText}"
@@ -209,7 +215,8 @@
                     <ContentControl Grid.Row="1"
                                     Grid.Column="1"
                                     Content="{Binding MuteAppVolumeHotkey}"
-                                    IsTabStop="False" />
+                                    IsTabStop="False"
+                                    ToolTip="{x:Static resx:Resources.SettingsMuteAppVolumeToolTip}" />
                 </Grid>
                 <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsSaveVolumesText}" ToolTip="{x:Static resx:Resources.SettingsSaveVolumesToolTip}" />
                 <Grid>
@@ -219,7 +226,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
                     <TextBlock VerticalAlignment="Center"
                                Style="{StaticResource BodySubText}"
@@ -235,9 +242,10 @@
                     <ContentControl Grid.Row="1"
                                     Grid.Column="1"
                                     Content="{Binding SaveVolumesHotkey}"
-                                    IsTabStop="False" />
+                                    IsTabStop="False"
+                                    ToolTip="{x:Static resx:Resources.SettingsSaveVolumesToolTip}" />
                 </Grid>
-                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsOpenVolumesText}"/>
+                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsOpenVolumesText}" ToolTip="{x:Static resx:Resources.SettingsOpenVolumesToolTip}" />
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -245,7 +253,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
                     <TextBlock VerticalAlignment="Center"
                                Style="{StaticResource BodySubText}"
@@ -261,9 +269,10 @@
                     <ContentControl Grid.Row="1"
                                     Grid.Column="1"
                                     Content="{Binding OpenVolumesHotkey}"
-                                    IsTabStop="False" />
+                                    IsTabStop="False"
+                                    ToolTip="{x:Static resx:Resources.SettingsOpenVolumesToolTip}" />
                 </Grid>
-                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsEnableUnlimitedAppControlText}"/>
+                <TextBlock Style="{StaticResource BodyText}" Text="{x:Static resx:Resources.SettingsEnableUnlimitedAppControlText}" ToolTip="{x:Static resx:Resources.SettingsEnableUnlimitedAppControlToolTip}" />
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -271,7 +280,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="300" />
                     </Grid.ColumnDefinitions>
                     <TextBlock VerticalAlignment="Center"
                                Style="{StaticResource BodySubText}"
@@ -287,7 +296,8 @@
                     <ContentControl Grid.Row="1"
                                     Grid.Column="1"
                                     Content="{Binding EnableUnlimitedAppControlHotKey}"
-                                    IsTabStop="False" />
+                                    IsTabStop="False"
+                                    ToolTip="{x:Static resx:Resources.SettingsEnableUnlimitedAppControlToolTip}" />
                 </Grid>
             </StackPanel>
         </DataTemplate>

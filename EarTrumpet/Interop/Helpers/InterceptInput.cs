@@ -5,7 +5,7 @@ using Keys = System.Windows.Forms.Keys;
 
 namespace EarTrumpet.Interop.Helpers
 {
-    class InterceptKeys
+    class InterceptInput
     {
         private const int WH_KEYBOARD_LL = 13;
         private const int WH_MOUSE_LL = 14;
@@ -24,6 +24,7 @@ namespace EarTrumpet.Interop.Helpers
 
         public static event Action<int> MouseWheelEvent;
         public static event Func<int, int, bool> IsMouseInsideIcon;
+        private static bool[] modifiers = new bool[8];
         private static IntPtr _kbHookID = IntPtr.Zero;
         private static IntPtr _mHookID = IntPtr.Zero;
 
@@ -74,21 +75,85 @@ namespace EarTrumpet.Interop.Helpers
                 Keys k = (Keys)Marshal.ReadInt32(lParam);
                 if (wParam == (IntPtr)WM_KEYDOWN || wParam == (IntPtr)WM_SYSKEYDOWN)
                 {
-                    if (k == Keys.VolumeDown)
+                    switch (k)
                     {
-                        App.ChangeVolume(-1);
-                        return (IntPtr)(-1);
+                        case Keys.VolumeDown:
+                            App.ChangeVolume(-1);
+                            return (IntPtr)(-1);
+                        case Keys.VolumeUp:
+                            App.ChangeVolume(1);
+                            return (IntPtr)(-1);
+                        case Keys.VolumeMute:
+                            App.MuteVolume();
+                            return (IntPtr)(-1);
+                        case Keys.LControlKey:
+                            modifiers[0] = true;
+                            break;
+                        case Keys.RControlKey:
+                            modifiers[1] = true;
+                            break;
+                        case Keys.LShiftKey:
+                            modifiers[2] = true;
+                            break;
+                        case Keys.RShiftKey:
+                            modifiers[3] = true;
+                            break;
+                        case Keys.LMenu:
+                            modifiers[4] = true;
+                            break;
+                        case Keys.RMenu:
+                            modifiers[5] = true;
+                            break;
+                        case Keys.LWin:
+                            modifiers[6] = true;
+                            break;
+                        case Keys.RWin:
+                            modifiers[7] = true;
+                            break;
                     }
-                    else if (k == Keys.VolumeUp)
+                }
+                else if (wParam == (IntPtr)WM_KEYUP || wParam == (IntPtr)WM_SYSKEYUP)
+                {
+                    switch (k)
                     {
-                        App.ChangeVolume(1);
-                        return (IntPtr)(-1);
+                        case Keys.LControlKey:
+                            modifiers[0] = false;
+                            break;
+                        case Keys.RControlKey:
+                            modifiers[1] = false;
+                            break;
+                        case Keys.LShiftKey:
+                            modifiers[2] = false;
+                            break;
+                        case Keys.RShiftKey:
+                            modifiers[3] = false;
+                            break;
+                        case Keys.LMenu:
+                            modifiers[4] = false;
+                            break;
+                        case Keys.RMenu:
+                            modifiers[5] = false;
+                            break;
+                        case Keys.LWin:
+                            modifiers[6] = false;
+                            break;
+                        case Keys.RWin:
+                            modifiers[7] = false;
+                            break;
                     }
-                    else if (k == Keys.VolumeMute)
-                    {
-                        App.MuteVolume();
-                        return (IntPtr)(-1);
-                    }
+                }
+                App.MasterModifier = App.AppModifier = true;
+                for (int i = 0; i < 8; i++)
+                {
+                    if (App.Settings.VolumeShiftHotkey.indices[i])
+                        App.MasterModifier &= modifiers[i];
+                    else
+                        App.MasterModifier &= !modifiers[i];
+
+                    if (App.Settings.AppVolumeShiftHotkey.indices[i])
+                        App.AppModifier &= modifiers[i];
+                    else
+                        App.AppModifier &= !modifiers[i];
                 }
             }
             return CallNextHookEx(_kbHookID, nCode, wParam, lParam);

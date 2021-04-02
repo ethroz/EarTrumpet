@@ -193,7 +193,7 @@
     <value>Assign this app to a playback device</value>
   </data>
   <data name="SettingsOpenEarTrumpetText" xml:space="preserve">
-    <value>Open Taskbar flyout</value>
+    <value>Taskbar flyout</value>
   </data>
   <data name="SettingsUseLegacyEarTrumpetIcon" xml:space="preserve">
     <value>Use legacy EarTrumpet icon</value>
@@ -253,7 +253,7 @@
     <value>No results</value>
   </data>
   <data name="SettingsOpenMixerText" xml:space="preserve">
-    <value>Open Mixer</value>
+    <value>Mixer</value>
   </data>
   <data name="ToggleSwitchOffText" xml:space="preserve">
     <value>Off</value>
@@ -271,7 +271,7 @@
     <value>Coming soon</value>
   </data>
   <data name="SettingsOpenSettingsText" xml:space="preserve">
-    <value>Open settings</value>
+    <value>Settings</value>
   </data>
   <data name="CloseButtonText" xml:space="preserve">
     <value>Close</value>
@@ -300,10 +300,10 @@ Open [https://eartrumpet.app/jmp/fixfonts] now?</value>
     <value>App volume modifier</value>
   </data>
   <data name="SettingsAppVolumeShiftToolTip" xml:space="preserve">
-    <value>Hover mouse over a window and scroll up or down while holding shortcut</value>
+    <value>Hover mouse over a window and scroll up or down while holding the shortcut</value>
   </data>
   <data name="SettingsEnableUnlimitedAppControlText" xml:space="preserve">
-    <value>Unbound the application maximum volume</value>
+    <value>Unlimited app volume</value>
   </data>
   <data name="SettingsMuteAppVolumeText" xml:space="preserve">
     <value>Mute app volume</value>
@@ -315,18 +315,36 @@ Open [https://eartrumpet.app/jmp/fixfonts] now?</value>
     <value>Mute volume</value>
   </data>
   <data name="SettingsOpenVolumesText" xml:space="preserve">
-    <value>Apply the saved volume preferences</value>
+    <value>Apply saved volume preferences</value>
   </data>
   <data name="SettingsSaveVolumesText" xml:space="preserve">
-    <value>Save the volume preferences</value>
+    <value>Save volume preferences</value>
   </data>
   <data name="SettingsSaveVolumesToolTip" xml:space="preserve">
-    <value>For all the current applications (appends/overwrites)</value>
+    <value>Saves all the volumes in the EarTrumpet default flyout view</value>
   </data>
   <data name="SettingsVolumeShiftText" xml:space="preserve">
     <value>Volume modifier</value>
   </data>
   <data name="SettingsVolumeShiftToolTip" xml:space="preserve">
     <value>Scroll up or down while holding shortcut</value>
+  </data>
+  <data name="SettingsEnableUnlimitedAppControlToolTip" xml:space="preserve">
+    <value>Allows the volume of the app under the mouse to be increased above 100% (When the app reaches 100%, the other apps begin to decrease in volume as the device volume increases to compensate)</value>
+  </data>
+  <data name="SettingsMuteVolumeToolTip" xml:space="preserve">
+    <value>Mutes the volume of the current device</value>
+  </data>
+  <data name="SettingsOpenEarTrumpetToolTip" xml:space="preserve">
+    <value>Opens the Taskbar flyout</value>
+  </data>
+  <data name="SettingsOpenMixerToolTip" xml:space="preserve">
+    <value>Opens the EarTrumpet Mixer</value>
+  </data>
+  <data name="SettingsOpenSettingsToolTip" xml:space="preserve">
+    <value>Opens the EarTrumpet settings page</value>
+  </data>
+  <data name="SettingsOpenVolumesToolTip" xml:space="preserve">
+    <value>Applies the saved volume preferences if any exist</value>
   </data>
 </root>

@@ -11,15 +11,11 @@ using EarTrumpet.UI.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Security.Principal;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
-using Keys = System.Windows.Forms.Keys;
 
 namespace EarTrumpet
 {
@@ -38,7 +34,7 @@ namespace EarTrumpet
         private WindowHolder _mixerWindow;
         private WindowHolder _settingsWindow;
         private ErrorReporter _errorReporter;
-        private static AppSettings _settings;
+        public static AppSettings Settings;
         private static bool _AllowAppChange;
         public static bool AllowAppChange
         {
@@ -46,7 +42,7 @@ namespace EarTrumpet
             set
             {
                 _AllowAppChange = value;
-                _settings.SaveBool("AllowAppChange", value);
+                Settings.SaveBool("AllowAppChange", value);
             }
         }
         public static bool MasterModifier, AppModifier, DisableMaster, master, app, above;
@@ -57,14 +53,15 @@ namespace EarTrumpet
         public static IAudioDevice device;
         private static string targetWindowName;
         private static string[][][] savedVolumes;
+        private static bool masterMute;
 
         private void OnAppStartup(object sender, StartupEventArgs e)
         {
             Exit += (_, __) => IsShuttingDown = true;
             HasIdentity = PackageHelper.CheckHasIdentity();
             PackageVersion = PackageHelper.GetVersion(HasIdentity);
-            _settings = new AppSettings();
-            _errorReporter = new ErrorReporter(_settings);
+            Settings = new AppSettings();
+            _errorReporter = new ErrorReporter(Settings);
 
             if (SingleInstanceAppMutex.TakeExclusivity())
             {
@@ -92,9 +89,9 @@ namespace EarTrumpet
 
             var deviceManager = WindowsAudioFactory.Create(AudioDeviceKind.Playback);
             deviceManager.Loaded += (_, __) => CompleteStartup();
-            _collectionViewModel = new DeviceCollectionViewModel(deviceManager, _settings);
+            _collectionViewModel = new DeviceCollectionViewModel(deviceManager, Settings);
 
-            _trayIcon = new ShellNotifyIcon(new TaskbarIconSource(_collectionViewModel, _settings));
+            _trayIcon = new ShellNotifyIcon(new TaskbarIconSource(_collectionViewModel, Settings));
             Exit += (_, __) => _trayIcon.IsVisible = false;
             _collectionViewModel.TrayPropertyChanged += () => _trayIcon.SetTooltip(_collectionViewModel.GetTrayToolTip());
 
@@ -118,15 +115,15 @@ namespace EarTrumpet
             volumeBanner = new VolumeBanner();
             sc = SynchronizationContext.Current;
 
-            _settings.FlyoutHotkeyTyped += () => _flyoutViewModel.OpenFlyout(InputType.Keyboard);
-            _settings.MixerHotkeyTyped += () => _mixerWindow.OpenOrClose();
-            _settings.SettingsHotkeyTyped += () => _settingsWindow.OpenOrBringToFront();
-            _settings.MuteVolumeHotkeyTyped += () => MuteVolume();
-            _settings.MuteAppVolumeHotkeyTyped += () => MuteAppVolume();
-            _settings.SaveVolumesHotkeyTyped += () => SaveVolumes();
-            _settings.OpenVolumesHotkeyTyped += () => OpenVolumes();
-            _settings.EnableUnlimitedAppControlHotKeyTyped += () => AllowAppChange = !AllowAppChange;
-            _settings.RegisterHotkeys();
+            Settings.FlyoutHotkeyTyped += () => _flyoutViewModel.OpenFlyout(InputType.Keyboard);
+            Settings.MixerHotkeyTyped += () => _mixerWindow.OpenOrClose();
+            Settings.SettingsHotkeyTyped += () => _settingsWindow.OpenOrBringToFront();
+            Settings.MuteVolumeHotkeyTyped += () => MuteVolume();
+            Settings.MuteAppVolumeHotkeyTyped += () => MuteAppVolume();
+            Settings.SaveVolumesHotkeyTyped += () => SaveVolumes();
+            Settings.OpenVolumesHotkeyTyped += () => OpenVolumes();
+            Settings.EnableUnlimitedAppControlHotKeyTyped += () => AllowAppChange = !AllowAppChange;
+            Settings.RegisterHotkeys();
 
             _trayIcon.PrimaryInvoke += (_, type) => _flyoutViewModel.OpenFlyout(type);
             _trayIcon.SecondaryInvoke += (_, __) => _trayIcon.ShowContextMenu(GetTrayContextMenuItems());
@@ -136,28 +133,27 @@ namespace EarTrumpet
             _trayIcon.IsVisible = true;
 
             // initialize hook events, keyboard and mouse events, and exit events
-            InterceptKeys.MouseWheelEvent += App_MouseWheelEvent;
-            InterceptKeys.IsMouseInsideIcon += (x, y) => _trayIcon.IsCursorOnIcon(x, y);
-            InterceptKeys.SetKeyboardHook();
-            InterceptKeys.SetMouseHook();
-            Exit += (_, __) => InterceptKeys.UnHookKeyboard();
-            Exit += (_, __) => InterceptKeys.UnHookMouse();
+            InterceptInput.MouseWheelEvent += App_MouseWheelEvent;
+            InterceptInput.IsMouseInsideIcon += (x, y) => _trayIcon.IsCursorOnIcon(x, y);
+            InterceptInput.SetKeyboardHook();
+            InterceptInput.SetMouseHook();
+            Exit += (_, __) => InterceptInput.UnHookKeyboard();
+            Exit += (_, __) => InterceptInput.UnHookMouse();
 
             // initialize the listener variables
             MasterModifier = AppModifier = DisableMaster = false;
 
             // initialize other variables
             device = _collectionViewModel.GetDeviceManager().Default;
-            savedVolumes = _settings.OpenVolumes();
-            _AllowAppChange = _settings.OpenBool("AllowAppChange", false);
+            savedVolumes = Settings.OpenVolumes();
+            _AllowAppChange = Settings.OpenBool("AllowAppChange", false);
+            masterMute = device.IsMuted;
 
             DisplayFirstRunExperience();
         }
 
         private void App_MouseWheelEvent(int wheelDelta)
         {
-            MasterModifier = !_settings.VolumeShiftHotkey.IsEmpty && Keyboard.IsKeyDown(KeyInterop.KeyFromVirtualKey((int)(_settings.VolumeShiftHotkey.Modifiers | _settings.VolumeShiftHotkey.Key)));
-            AppModifier = !_settings.AppVolumeShiftHotkey.IsEmpty && Keyboard.IsKeyDown(KeyInterop.KeyFromVirtualKey((int)(_settings.AppVolumeShiftHotkey.Modifiers | _settings.AppVolumeShiftHotkey.Key)));
             master = MasterModifier && !DisableMaster;
             app = AppModifier && !DisableMaster;
             above = false;
@@ -172,8 +168,9 @@ namespace EarTrumpet
             }
         }
 
-        public static void ChangeAppVolume(int direction)
+        private static void GetTargetWindow()
         {
+            Trace.WriteLine(System.Windows.Forms.Cursor.Position);
             GetWindowThreadProcessId(WindowFromPoint(System.Windows.Forms.Cursor.Position), out uint processId);
             try
             {
@@ -197,10 +194,14 @@ namespace EarTrumpet
                 }
                 catch { }
             }
-
 #if DEBUG
             Trace.WriteLine("Target Window: " + targetWindowName);
 #endif
+        }
+
+        public static void ChangeAppVolume(int direction)
+        {
+            GetTargetWindow();
             int index = -1;
             for (int i = 0; i < device.Groups.Count; i++)
             {
@@ -244,45 +245,21 @@ namespace EarTrumpet
 
         public static void MuteVolume()
         {
-            device.IsMuted = !device.IsMuted;
+            masterMute = device.IsMuted;
+            device.IsMuted = !masterMute;
+            masterMute = !masterMute;
             ShowVolumeBanner();
         }
 
         public static void MuteAppVolume()
         {
-            GetWindowThreadProcessId(WindowFromPoint(System.Windows.Forms.Cursor.Position), out uint processId);
-            try
-            {
-                var appResolver = (IApplicationResolver)new ApplicationResolver();
-                appResolver.GetAppIDForProcess(processId, out string appId, out _, out _, out _);
-                Marshal.ReleaseComObject(appResolver);
-
-                var shellItem = Shell32.SHCreateItemInKnownFolder(FolderIds.AppsFolder, Shell32.KF_FLAG_DONT_VERIFY, appId, typeof(IShellItem2).GUID);
-                targetWindowName = shellItem.GetString(ref PropertyKeys.PKEY_ItemNameDisplay);
-            }
-            catch { }
-
-            if (string.IsNullOrWhiteSpace(targetWindowName))
-            {
-                try
-                {
-                    using (var proc = Process.GetProcessById((int)processId))
-                    {
-                        targetWindowName = proc.MainWindowTitle;
-                    }
-                }
-                catch { }
-            }
-
-#if DEBUG
-            Trace.WriteLine("Target Window: " + targetWindowName);
-#endif
+            GetTargetWindow();
             for (int i = 0; i < device.Groups.Count; i++)
             {
                 // only mute the app if it is the window that is under the mouse
                 if (device.Groups[i].DisplayName == targetWindowName)
                 {
-                    device.Groups[i].IsMuted = device.Groups[i].IsMuted;
+                    device.Groups[i].IsMuted = !device.Groups[i].IsMuted;
                     ShowAppVolumeBanner(device.Groups[i]);
                     break;
                 }
@@ -330,7 +307,7 @@ namespace EarTrumpet
                     newList.Add(new string[2] { device.Groups[i].ExeName, device.Groups[i].Volume.ToString() });
             }
             savedVolumes[index] = newList.ToArray();
-            _settings.SaveVolumes(savedVolumes);
+            Settings.SaveVolumes(savedVolumes);
             return;
 
         // if the device doesnt already exist
@@ -342,7 +319,7 @@ namespace EarTrumpet
                 newArray[i + 1] = new string[2] { device.Groups[i].ExeName, device.Groups[i].Volume.ToString() };
             }
             savedVolumes[savedVolumes.Length - 1] = newArray;
-            _settings.SaveVolumes(savedVolumes);
+            Settings.SaveVolumes(savedVolumes);
             Trace.WriteLine("Volumes Saved");
         }
 
@@ -386,7 +363,7 @@ namespace EarTrumpet
 
         private static void ShowVolumeBanner()
         {
-            volumeBanner.ChangeMasterVolume(device.Volume, device.IsMuted);
+            volumeBanner.ChangeMasterVolume(device.Volume, masterMute);
         }
 
         public static void InvokeHideBanner()
@@ -402,16 +379,16 @@ namespace EarTrumpet
 
         private void DisplayFirstRunExperience()
         {
-            if (!_settings.HasShownFirstRun
+            if (!Settings.HasShownFirstRun
 #if DEBUG
                 || Keyboard.IsKeyDown(Key.LeftCtrl)
 #endif
                 )
             {
                 Trace.WriteLine($"App DisplayFirstRunExperience Showing welcome dialog");
-                _settings.HasShownFirstRun = true;
+                Settings.HasShownFirstRun = true;
 
-                var dialog = new DialogWindow { DataContext = new WelcomeViewModel(_settings) };
+                var dialog = new DialogWindow { DataContext = new WelcomeViewModel(Settings) };
                 dialog.Show();
                 dialog.RaiseWindow();
             }
@@ -507,9 +484,9 @@ namespace EarTrumpet
                 null,
                 new SettingsPageViewModel[]
                     {
-                        new EarTrumpetShortcutsPageViewModel(_settings),
-                        new EarTrumpetLegacySettingsPageViewModel(_settings),
-                        new EarTrumpetAboutPageViewModel(() => _errorReporter.DisplayDiagnosticData(), _settings)
+                        new EarTrumpetShortcutsPageViewModel(Settings),
+                        new EarTrumpetLegacySettingsPageViewModel(Settings),
+                        new EarTrumpetAboutPageViewModel(() => _errorReporter.DisplayDiagnosticData(), Settings)
                     });
 
             var allCategories = new List<SettingsCategoryViewModel>();

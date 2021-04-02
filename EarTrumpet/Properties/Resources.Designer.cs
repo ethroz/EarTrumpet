@@ -441,7 +441,7 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hover mouse over a window and scroll up or down while holding shortcut.
+        ///   Looks up a localized string similar to Hover mouse over a window and scroll up or down while holding the shortcut.
         /// </summary>
         public static string SettingsAppVolumeShiftToolTip {
             get {
@@ -468,11 +468,20 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unbound the application maximum volume.
+        ///   Looks up a localized string similar to Unlimited app volume.
         /// </summary>
         public static string SettingsEnableUnlimitedAppControlText {
             get {
                 return ResourceManager.GetString("SettingsEnableUnlimitedAppControlText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allows the volume of the app under the mouse to be increased above 100% (When the app reaches 100%, the other apps begin to decrease in volume as the device volume increases to compensate).
+        /// </summary>
+        public static string SettingsEnableUnlimitedAppControlToolTip {
+            get {
+                return ResourceManager.GetString("SettingsEnableUnlimitedAppControlToolTip", resourceCulture);
             }
         }
         
@@ -504,7 +513,16 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Taskbar flyout.
+        ///   Looks up a localized string similar to Mutes the volume of the current device.
+        /// </summary>
+        public static string SettingsMuteVolumeToolTip {
+            get {
+                return ResourceManager.GetString("SettingsMuteVolumeToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Taskbar flyout.
         /// </summary>
         public static string SettingsOpenEarTrumpetText {
             get {
@@ -513,7 +531,16 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Mixer.
+        ///   Looks up a localized string similar to Opens the Taskbar flyout.
+        /// </summary>
+        public static string SettingsOpenEarTrumpetToolTip {
+            get {
+                return ResourceManager.GetString("SettingsOpenEarTrumpetToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mixer.
         /// </summary>
         public static string SettingsOpenMixerText {
             get {
@@ -522,7 +549,16 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open settings.
+        ///   Looks up a localized string similar to Opens the EarTrumpet Mixer.
+        /// </summary>
+        public static string SettingsOpenMixerToolTip {
+            get {
+                return ResourceManager.GetString("SettingsOpenMixerToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string SettingsOpenSettingsText {
             get {
@@ -531,7 +567,16 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply the saved volume preferences.
+        ///   Looks up a localized string similar to Opens the EarTrumpet settings page.
+        /// </summary>
+        public static string SettingsOpenSettingsToolTip {
+            get {
+                return ResourceManager.GetString("SettingsOpenSettingsToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply saved volume preferences.
         /// </summary>
         public static string SettingsOpenVolumesText {
             get {
@@ -540,7 +585,16 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save the volume preferences.
+        ///   Looks up a localized string similar to Applies the saved volume preferences if any exist.
+        /// </summary>
+        public static string SettingsOpenVolumesToolTip {
+            get {
+                return ResourceManager.GetString("SettingsOpenVolumesToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save volume preferences.
         /// </summary>
         public static string SettingsSaveVolumesText {
             get {
@@ -549,7 +603,7 @@ namespace EarTrumpet.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For all the current applications (appends/overwrites).
+        ///   Looks up a localized string similar to Saves all the volumes in the EarTrumpet default flyout view.
         /// </summary>
         public static string SettingsSaveVolumesToolTip {
             get {
