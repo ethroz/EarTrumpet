@@ -92,16 +92,16 @@ namespace EarTrumpet.Interop.Helpers
                         case Keys.RControlKey:
                             modifiers[1] = true;
                             break;
-                        case Keys.LShiftKey:
+                        case Keys.LMenu:
                             modifiers[2] = true;
                             break;
-                        case Keys.RShiftKey:
+                        case Keys.RMenu:
                             modifiers[3] = true;
                             break;
-                        case Keys.LMenu:
+                        case Keys.LShiftKey:
                             modifiers[4] = true;
                             break;
-                        case Keys.RMenu:
+                        case Keys.RShiftKey:
                             modifiers[5] = true;
                             break;
                         case Keys.LWin:
@@ -122,16 +122,16 @@ namespace EarTrumpet.Interop.Helpers
                         case Keys.RControlKey:
                             modifiers[1] = false;
                             break;
-                        case Keys.LShiftKey:
+                        case Keys.LMenu:
                             modifiers[2] = false;
                             break;
-                        case Keys.RShiftKey:
+                        case Keys.RMenu:
                             modifiers[3] = false;
                             break;
-                        case Keys.LMenu:
+                        case Keys.LShiftKey:
                             modifiers[4] = false;
                             break;
-                        case Keys.RMenu:
+                        case Keys.RShiftKey:
                             modifiers[5] = false;
                             break;
                         case Keys.LWin:
@@ -142,15 +142,16 @@ namespace EarTrumpet.Interop.Helpers
                             break;
                     }
                 }
-                App.MasterModifier = App.AppModifier = true;
+                App.MasterModifier = App.Settings.VolumeShiftHotkey.Combination != null;
+                App.AppModifier = App.Settings.AppVolumeShiftHotkey.Combination != null;
                 for (int i = 0; i < 8; i++)
                 {
-                    if (App.Settings.VolumeShiftHotkey.indices[i])
+                    if (App.Settings.VolumeShiftHotkey.Indices[i])
                         App.MasterModifier &= modifiers[i];
                     else
                         App.MasterModifier &= !modifiers[i];
 
-                    if (App.Settings.AppVolumeShiftHotkey.indices[i])
+                    if (App.Settings.AppVolumeShiftHotkey.Indices[i])
                         App.AppModifier &= modifiers[i];
                     else
                         App.AppModifier &= !modifiers[i];

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace EarTrumpet.Interop.Helpers
 {
@@ -18,7 +18,8 @@ namespace EarTrumpet.Interop.Helpers
 
         public Keys Modifiers { get; set; }
         public Keys Key { get; set; }
-        public bool[] indices = new bool[8];
+        public Key[] Combination;
+        public bool[] Indices = new bool[8];
 
         public HotkeyData(Message msg)
         {
@@ -36,7 +37,22 @@ namespace EarTrumpet.Interop.Helpers
         public override bool Equals(object obj)
         {
             var other = (HotkeyData)obj;
-            return other.Key == Key && other.Modifiers == Modifiers;
+            if (Combination == null && other.Combination == null)
+            {
+                return other.Key == Key && other.Modifiers == Modifiers;
+            }
+            else if (Combination != null && other.Combination != null)
+            {
+                if (Combination.Length != other.Combination.Length)
+                    return false;
+                for (int i = 0; i < Combination.Length; i++)
+                {
+                    if (Combination[i] != other.Combination[i])
+                        return false;
+                }
+                return true;
+            }
+            return false;
         }
 
         public override int GetHashCode()

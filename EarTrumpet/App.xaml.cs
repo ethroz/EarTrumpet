@@ -11,6 +11,7 @@ using EarTrumpet.UI.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -156,7 +157,6 @@ namespace EarTrumpet
         {
             master = MasterModifier && !DisableMaster;
             app = AppModifier && !DisableMaster;
-            above = false;
             if (app)
             {
                 ChangeAppVolume(wheelDelta);
@@ -170,7 +170,6 @@ namespace EarTrumpet
 
         private static void GetTargetWindow()
         {
-            Trace.WriteLine(System.Windows.Forms.Cursor.Position);
             GetWindowThreadProcessId(WindowFromPoint(System.Windows.Forms.Cursor.Position), out uint processId);
             try
             {
@@ -202,6 +201,7 @@ namespace EarTrumpet
         public static void ChangeAppVolume(int direction)
         {
             GetTargetWindow();
+            above = false;
             int index = -1;
             for (int i = 0; i < device.Groups.Count; i++)
             {
@@ -216,6 +216,7 @@ namespace EarTrumpet
                     {
                         device.Groups[i].Volume = Math.Max(Math.Min((float)Math.Round(device.Groups[i].Volume * 50 + direction) / 50.0f, 1.0f), 0.0f);
                     }
+                    device.Groups[i].IsMuted = false;
                     index = i;
                 }
             }
@@ -232,7 +233,6 @@ namespace EarTrumpet
             }
             else if (index != -1)
             {
-                device.Groups[index].IsMuted = false;
                 ShowAppVolumeBanner(device.Groups[index]);
             }
         }
@@ -248,6 +248,7 @@ namespace EarTrumpet
             masterMute = device.IsMuted;
             device.IsMuted = !masterMute;
             masterMute = !masterMute;
+            Trace.WriteLine("master muted");
             ShowVolumeBanner();
         }
 

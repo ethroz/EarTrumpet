@@ -3,6 +3,8 @@ using EarTrumpet.Interop.Helpers;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace EarTrumpet
 {
@@ -29,6 +31,76 @@ namespace EarTrumpet
             HotkeyManager.Current.Register(MuteAppVolumeHotkey);
             HotkeyManager.Current.Register(SaveVolumesHotkey);
             HotkeyManager.Current.Register(OpenVolumesHotkey);
+
+            VolumeShiftHotkey.Indices = new bool[8];
+            if (VolumeShiftHotkey.Combination != null)
+            {
+                foreach (Key k in VolumeShiftHotkey.Combination)
+                {
+                    switch (k)
+                    {
+                        case Key.LeftCtrl:
+                            VolumeShiftHotkey.Indices[0] = true;
+                            break;
+                        case Key.RightCtrl:
+                            VolumeShiftHotkey.Indices[1] = true;
+                            break;
+                        case Key.LeftAlt:
+                            VolumeShiftHotkey.Indices[2] = true;
+                            break;
+                        case Key.RightAlt:
+                            VolumeShiftHotkey.Indices[3] = true;
+                            break;
+                        case Key.LeftShift:
+                            VolumeShiftHotkey.Indices[4] = true;
+                            break;
+                        case Key.RightShift:
+                            VolumeShiftHotkey.Indices[5] = true;
+                            break;
+                        case Key.LWin:
+                            VolumeShiftHotkey.Indices[6] = true;
+                            break;
+                        case Key.RWin:
+                            VolumeShiftHotkey.Indices[7] = true;
+                            break;
+                    }
+                }
+            }
+
+            AppVolumeShiftHotkey.Indices = new bool[8];
+            if (AppVolumeShiftHotkey.Combination != null)
+            {
+                foreach (Key k in AppVolumeShiftHotkey.Combination)
+                {
+                    switch (k)
+                    {
+                        case Key.LeftCtrl:
+                            AppVolumeShiftHotkey.Indices[0] = true;
+                            break;
+                        case Key.RightCtrl:
+                            AppVolumeShiftHotkey.Indices[1] = true;
+                            break;
+                        case Key.LeftAlt:
+                            AppVolumeShiftHotkey.Indices[2] = true;
+                            break;
+                        case Key.RightAlt:
+                            AppVolumeShiftHotkey.Indices[3] = true;
+                            break;
+                        case Key.LeftShift:
+                            AppVolumeShiftHotkey.Indices[4] = true;
+                            break;
+                        case Key.RightShift:
+                            AppVolumeShiftHotkey.Indices[5] = true;
+                            break;
+                        case Key.LWin:
+                            AppVolumeShiftHotkey.Indices[6] = true;
+                            break;
+                        case Key.RWin:
+                            AppVolumeShiftHotkey.Indices[7] = true;
+                            break;
+                    }
+                }
+            }
 
             HotkeyManager.Current.KeyPressed += (hotkey) =>
             {
@@ -113,9 +185,7 @@ namespace EarTrumpet
             get => _settings.Get("VolumeShiftHotkey", new HotkeyData { });
             set
             {
-                HotkeyManager.Current.Unregister(VolumeShiftHotkey);
                 _settings.Set("VolumeShiftHotkey", value);
-                HotkeyManager.Current.Register(VolumeShiftHotkey);
             }
         }
 
@@ -132,12 +202,14 @@ namespace EarTrumpet
 
         public HotkeyData AppVolumeShiftHotkey
         {
-            get => _settings.Get("AppVolumeShiftHotkey", new HotkeyData { });
+            get
+            {
+                HotkeyData hk = _settings.Get("AppVolumeShiftHotkey", new HotkeyData { });
+                return hk;
+            }
             set
             {
-                HotkeyManager.Current.Unregister(AppVolumeShiftHotkey);
                 _settings.Set("AppVolumeShiftHotkey", value);
-                HotkeyManager.Current.Register(AppVolumeShiftHotkey);
             }
         }
 
