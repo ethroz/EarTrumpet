@@ -16,7 +16,7 @@ namespace EarTrumpet.Actions.ViewModel
             {
                 _trigger.Option = newHotkey;
                 RaisePropertyChanged(nameof(Hotkey));
-            });
+            }, true);
         }
 
         public override string ToString()

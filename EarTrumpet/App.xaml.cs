@@ -95,15 +95,10 @@ namespace EarTrumpet
 
             var deviceManager = WindowsAudioFactory.Create(AudioDeviceKind.Playback);
             deviceManager.Loaded += (_, __) => CompleteStartup();
-<<<<<<< HEAD
-            _collectionViewModel = new DeviceCollectionViewModel(deviceManager, Settings);
 
-            _trayIcon = new ShellNotifyIcon(new TaskbarIconSource(_collectionViewModel, Settings));
-=======
-            CollectionViewModel = new DeviceCollectionViewModel(deviceManager, _settings);
+            CollectionViewModel = new DeviceCollectionViewModel(deviceManager, Settings);
 
-            _trayIcon = new ShellNotifyIcon(new TaskbarIconSource(CollectionViewModel, _settings));
->>>>>>> 35f8eae3a2ec94ae32a46b4cdbfa264475aa7400
+            _trayIcon = new ShellNotifyIcon(new TaskbarIconSource(CollectionViewModel, Settings));
             Exit += (_, __) => _trayIcon.IsVisible = false;
             CollectionViewModel.TrayPropertyChanged += () => _trayIcon.SetTooltip(CollectionViewModel.GetTrayToolTip());
 
@@ -155,7 +150,7 @@ namespace EarTrumpet
             MasterModifier = AppModifier = DisableMaster = false;
 
             // initialize other variables
-            device = _collectionViewModel.GetDeviceManager().Default;
+            device = CollectionViewModel.GetDeviceManager().Default;
             savedVolumes = Settings.OpenVolumes();
             _AllowAppChange = Settings.OpenBool("AllowAppChange", false);
             masterMute = device.IsMuted;
@@ -512,15 +507,11 @@ namespace EarTrumpet
             return new SettingsWindow { DataContext = viewModel };
         }
 
-<<<<<<< HEAD
-        private Window CreateMixerExperience() => new FullWindow { DataContext = new FullWindowViewModel(_collectionViewModel) };
-
         [DllImport("user32.dll")]
         private static extern uint GetWindowThreadProcessId(IntPtr hwnd, out uint procId);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         private static extern IntPtr WindowFromPoint(System.Drawing.Point Point);
-=======
         private SettingsCategoryViewModel CreateAddonSettingsPage(IEarTrumpetAddonSettingsPage addonSettingsPage)
         {
             var addon = (EarTrumpetAddon)addonSettingsPage;
@@ -534,6 +525,5 @@ namespace EarTrumpet
         }
 
         private Window CreateMixerExperience() => new FullWindow { DataContext = new FullWindowViewModel(CollectionViewModel) };
->>>>>>> 35f8eae3a2ec94ae32a46b4cdbfa264475aa7400
     }
 }
