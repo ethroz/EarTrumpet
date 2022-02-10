@@ -1,7 +1,14 @@
 # Changelog
 
+## 2.1.9.0
+- Added basic support for Windows 11
+- Added/updated Italian, Hungarian, Spanish, Portuguese, Turkish, Chinese, Norwegian, Arabic, Czech, Polish, Swedish, Romanian, and Russian translations
+- Fixed an issue with the flyout opening outside the working area
+- Fixed an issue with slow window movement when dragging
+
 ## 2.1.8.0
 - Added Hungarian, Swedish, Korean, and Tamil translations
+- Updated Japanese translations
 - Added a fluent icon
 - Fixed an issue with missing Czech and Afrikaans translations 
 - Fixed an issue with icons not appearing for packaged desktop applications (e.g. Microsoft Flight Simulator)
@@ -66,7 +73,7 @@
 - Added text to notification area icon tooltip to indicate mute state
 - Re-added flyout window shadow and borders
 - Added additional telemetry points
-- Removed Arabic, Hungarian, Korean, Norwegian Bokmål, Portuguese, Romanian, and Turkish until we complete localization
+- Removed Arabic, Hungarian, Korean, Norwegian Bokmï¿½l, Portuguese, Romanian, and Turkish until we complete localization
 - Additional bugfixes
 
 ## 2.0.8.0

@@ -6,14 +6,20 @@ on:
       - dev
       - review/*
       - experiment/*
-      - ci/* 
+      - ci/*
+      - rafael/*
+      - dave/*
+      - david/*
     paths-ignore:
       - '**/*.md'
+      - '.github/ISSUE_TEMPLATE/*'
+      - 'Graphics/*'
   pull_request:
     branches: 
       - dev
     paths-ignore: 
       - '**/*.md'
+      - crowdin.yml
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
@@ -217,7 +223,7 @@ jobs:
           dotnet-version: '2.1.809'
 
       - name: Install AzureSignTool
-        run: dotnet tool install --tool-path . azuresigntool
+        run: dotnet tool install --tool-path . azuresigntool --version 2.0.17
 
       - name: Install Chocolatey
         if: matrix.channel == 'Chocolatey'
@@ -430,6 +436,6 @@ jobs:
           $Version = [Version](Get-Content "$MetadataPath\Store.version.txt")
           $StoreBundleFilename = "EarTrumpet.Package_${Version}_x86_bundle.appxupload"
 
-          New-SubmissionPackage -ConfigPath "$PackagingRoot\SBConfig.json" -PDPRootPath "$PackagingRoot\PDPs" -ImagesRootPath "$PackagingRoot\PDPs" -AppxPath "$env:ARTIFACTS_BASE\Signed\AppxUpload\$StoreBundleFilename" -OutPath "$SubmissionRoot" -OutName EarTrumpet -Verbose
+          New-SubmissionPackage -ConfigPath "$PackagingRoot\SBConfig.json" -PDPRootPath "$PackagingRoot\PDPs" -ImagesRootPath "$PackagingRoot\PDPs" -AppxPath "$env:ARTIFACTS_BASE\Signed\AppxUpload\$StoreBundleFilename" -MediaFallbackLanguage en-US -OutPath "$SubmissionRoot" -OutName EarTrumpet -Verbose
           $submissionId, $submissionUrl = Update-ApplicationSubmission -AppId "${{ secrets.partnercenter_appid }}" -SubmissionDataPath "$SubmissionRoot\EarTrumpet.json" -PackagePath "$SubmissionRoot\EarTrumpet.zip" -AddPackages -UpdateListings -UpdatePublishModeAndVisibility -UpdatePricingAndAvailability -UpdateAppProperties -UpdateNotesForCertification -TargetPublishMode Manual -Force -Verbose
           Complete-ApplicationSubmission -AppId "${{ secrets.partnercenter_appid }}" -SubmissionId $submissionId -Verbose
