@@ -296,7 +296,6 @@ Open [https://eartrumpet.app/jmp/fixfonts] now?</value>
   <data name="PrivacyCheckboxText" xml:space="preserve">
     <value>Send crash data to the EarTrumpet team</value>
   </data>
-<<<<<<< HEAD
   <data name="SettingsAppVolumeShiftText" xml:space="preserve">
     <value>App volume modifier</value>
   </data>
@@ -345,9 +344,9 @@ Open [https://eartrumpet.app/jmp/fixfonts] now?</value>
   <data name="SettingsOpenSettingsToolTip" xml:space="preserve">
     <value>Opens the EarTrumpet settings page</value>
   </data>
-  <data name="SettingsOpenVolumesToolTip" xml:space="preserve">
+	<data name="SettingsOpenVolumesToolTip" xml:space="preserve">
     <value>Applies the saved volume preferences if any exist</value>
-=======
+  </data>
 
   <!-- Actions add-on -->
   <data name="ActionAdditionalText" xml:space="preserve">
@@ -691,6 +690,5 @@ Open [https://eartrumpet.app/jmp/fixfonts] now?</value>
   </data>
   <data name="ChooseAnAppHelpText" xml:space="preserve">
     <value>Apps shown above have played sound recently.</value>
->>>>>>> 35f8eae3a2ec94ae32a46b4cdbfa264475aa7400
   </data>
 </root>
