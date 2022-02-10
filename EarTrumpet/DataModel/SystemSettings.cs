@@ -44,20 +44,20 @@ namespace EarTrumpet.DataModel
 
         private static Color GetAccentColor()
         {
-            const string DWM_KEY = @"Software\Microsoft\Windows\DWM";
+            const string DWM_KEY = @"Software\Microsoft\Windows\CurrentVersion\Explorer\Accent";
             using (RegistryKey dwmKey = Registry.CurrentUser.OpenSubKey(DWM_KEY, RegistryKeyPermissionCheck.ReadSubTree))
             {
                 const string KEY_EX_MSG = "The \"HKCU\\" + DWM_KEY + "\" registry key does not exist.";
                 if (dwmKey is null) throw new InvalidOperationException(KEY_EX_MSG);
 
-                object accentColorObj = dwmKey.GetValue("AccentColor");
+                object accentColorObj = dwmKey.GetValue("AccentColorMenu");
                 if (accentColorObj is int accentColorDword)
                 {
                     return ParseDWordColor(accentColorDword);
                 }
                 else
                 {
-                    const string VALUE_EX_MSG = "The \"HKCU\\" + DWM_KEY + "\\AccentColor\" registry key value could not be parsed as an ABGR color.";
+                    const string VALUE_EX_MSG = "The \"HKCU\\" + DWM_KEY + "\\AccentColorMenu\" registry key value could not be parsed as an ABGR color.";
                     throw new InvalidOperationException(VALUE_EX_MSG);
                 }
             }
